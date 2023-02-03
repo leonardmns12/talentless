@@ -48,7 +48,42 @@ end
 
 def send_to_slack(message)
   return if Setting::SLACK_WEBHOOK.empty?
-  HTTP.post(Setting::SLACK_WEBHOOK, json: {content: message, username: "Github Action", avatar_url: "https://i.imgur.com/4M34hi2.png"})
+  HTTP.post(Setting::SLACK_WEBHOOK, json: {username: "Github Action", avatar_url: "https://i.imgur.com/4M34hi2.png", "embeds": [
+    {
+      "author": {
+        "name": "Github Action",
+        "url": "https://www.reddit.com/r/cats/",
+        "icon_url": "https://i.imgur.com/BJSvIVH.png"
+      },
+      "title": "Daily Report for Leo",
+      "description": message,
+      "color": 15258703,
+      "fields": [
+        {
+          "name": "Latitude",
+          "value": "-6.200304570458018",
+          "inline": true
+        },
+        {
+          "name": "Longitude",
+          "value": "106.61325634009492",
+          "inline": true
+        },
+        {
+          "name": "Sended to cc mail",
+          "value": "leonard.monosa@gambitstocks.com"
+        },
+        {
+          "name": "Thanks!",
+          "value": "You're welcome :wink:"
+        }
+      ],
+      "footer": {
+        "text": "Coded with ❤️ by Leo",
+        "icon_url": "https://i.imgur.com/BJSvIVH.png"
+      }
+    }
+  ]})
 end
 
 def run
@@ -168,6 +203,7 @@ def run
     send_to_slack("Succesfuly clocked out for leonard@stockbit")
     return "Clocked out."
   when "Clock Out"
+    send_to_slack('Already clocked out today for leonard@stockbit')
     return "All good today."
   else
     raise "I don't know what's going on."
