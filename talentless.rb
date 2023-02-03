@@ -194,13 +194,13 @@ def run
     puts_or_hush "Clocking in..."
     clock_in_button = page.css("button").find { |b| b.inner_text == "Clock In" }
     clock_in_button.click
-    send_to_slack("I'm successfuly clocked in for Leo :wink:")
+    send_to_slack("I'm successfuly clocked in for you today :wink:")
     return "Clocked in."
   when "Clock In"
     puts_or_hush "Clocking out..."
     clock_out_button = page.css("button").find { |b| b.inner_text == "Clock Out" }
     clock_out_button.click
-    send_to_slack("I'm successfuly clocked out for you today Leo :wink:")
+    send_to_slack("I'm successfuly clocked out for you today :wink:")
     return "Clocked out."
   when "Clock Out"
     send_to_slack('Already clocked out today for Leo :wink:')
