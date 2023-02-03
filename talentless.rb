@@ -51,7 +51,7 @@ def send_to_slack(message)
   HTTP.post(Setting::SLACK_WEBHOOK, json: {username: "Github Action", avatar_url: "https://i.imgur.com/4M34hi2.png", "embeds": [
     {
       "author": {
-        "name": "Automate Absence Report",
+        "name": "Automate Attendance Report",
         "url": "https://www.reddit.com/r/cats/",
         "icon_url": "https://i.imgur.com/BJSvIVH.png"
       },
