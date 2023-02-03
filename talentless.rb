@@ -48,7 +48,7 @@ end
 
 def send_to_slack(message)
   return if Setting::SLACK_WEBHOOK.empty?
-  HTTP.post(Setting::SLACK_WEBHOOK, json: {text: message, username: "Talenta"})
+  HTTP.post(Setting::SLACK_WEBHOOK, json: {content: message, username: "Github Action", avatar_url: "https://i.imgur.com/4M34hi2.png"})
 end
 
 def run
@@ -123,6 +123,7 @@ def run
   time_off_today = time_offs.find { |t| t[:effective] && t[:range].include?(current_time) }
 
   if time_off_today
+    send_to_slack("We have days offfff!!! #{time_off_today}")
     return "We have days offfff!!! #{time_off_today}"
   else
     puts_or_hush "Nope, no day off today."
@@ -158,13 +159,13 @@ def run
     puts_or_hush "Clocking in..."
     clock_in_button = page.css("button").find { |b| b.inner_text == "Clock In" }
     clock_in_button.click
-    send_to_slack("Clocked in :smile:")
+    send_to_slack("Succesfuly clocked in for leonard@stockbit")
     return "Clocked in."
   when "Clock In"
     puts_or_hush "Clocking out..."
     clock_out_button = page.css("button").find { |b| b.inner_text == "Clock Out" }
     clock_out_button.click
-    send_to_slack("Clocked out :smile:")
+    send_to_slack("Succesfuly clocked out for leonard@stockbit")
     return "Clocked out."
   when "Clock Out"
     return "All good today."
