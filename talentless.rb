@@ -158,7 +158,7 @@ def run
   time_off_today = time_offs.find { |t| t[:effective] && t[:range].include?(current_time) }
 
   if time_off_today
-    send_to_slack("We have days offfff Leo!!! :D #{time_off_today}")
+    send_to_slack("We have days offfff Leo!!! :wink: #{time_off_today}")
     return "We have days offfff!!! #{time_off_today}"
   else
     puts_or_hush "Nope, no day off today."
@@ -194,16 +194,16 @@ def run
     puts_or_hush "Clocking in..."
     clock_in_button = page.css("button").find { |b| b.inner_text == "Clock In" }
     clock_in_button.click
-    send_to_slack("I'm successfuly clocked in for Leo :D")
+    send_to_slack("I'm successfuly clocked in for Leo :wink:")
     return "Clocked in."
   when "Clock In"
     puts_or_hush "Clocking out..."
     clock_out_button = page.css("button").find { |b| b.inner_text == "Clock Out" }
     clock_out_button.click
-    send_to_slack("I'm successfuly clocked out for you today Leo :D")
+    send_to_slack("I'm successfuly clocked out for you today Leo :wink:")
     return "Clocked out."
   when "Clock Out"
-    send_to_slack('Already clocked out today for Leo :D')
+    send_to_slack('Already clocked out today for Leo :wink:')
     return "All good today."
   else
     raise "I don't know what's going on."
