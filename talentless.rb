@@ -51,7 +51,7 @@ def send_to_slack(message)
   HTTP.post(Setting::SLACK_WEBHOOK, json: {username: "Github Action", avatar_url: "https://i.imgur.com/4M34hi2.png", "embeds": [
     {
       "author": {
-        "name": "Github Action",
+        "name": "Automate Absence Report",
         "url": "https://www.reddit.com/r/cats/",
         "icon_url": "https://i.imgur.com/BJSvIVH.png"
       },
@@ -71,7 +71,7 @@ def send_to_slack(message)
         },
         {
           "name": "Sended to cc mail",
-          "value": "leonard.monosa@gambitstocks.com"
+          "value": "leonard.monosa@gambitstocks.com \n leonard.monosa@stockbit.com \n leonardmanoza@gmail.com"
         },
         {
           "name": "Thanks!",
@@ -158,7 +158,7 @@ def run
   time_off_today = time_offs.find { |t| t[:effective] && t[:range].include?(current_time) }
 
   if time_off_today
-    send_to_slack("We have days offfff!!! #{time_off_today}")
+    send_to_slack("We have days offfff Leo!!! :D #{time_off_today}")
     return "We have days offfff!!! #{time_off_today}"
   else
     puts_or_hush "Nope, no day off today."
@@ -194,16 +194,16 @@ def run
     puts_or_hush "Clocking in..."
     clock_in_button = page.css("button").find { |b| b.inner_text == "Clock In" }
     clock_in_button.click
-    send_to_slack("Succesfuly clocked in for leonard@stockbit")
+    send_to_slack("I'm successfuly clocked in for Leo :D")
     return "Clocked in."
   when "Clock In"
     puts_or_hush "Clocking out..."
     clock_out_button = page.css("button").find { |b| b.inner_text == "Clock Out" }
     clock_out_button.click
-    send_to_slack("Succesfuly clocked out for leonard@stockbit")
+    send_to_slack("I'm successfuly clocked out for you today Leo :D")
     return "Clocked out."
   when "Clock Out"
-    send_to_slack('Already clocked out today for leonard@stockbit')
+    send_to_slack('Already clocked out today for Leo :D')
     return "All good today."
   else
     raise "I don't know what's going on."
