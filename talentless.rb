@@ -203,7 +203,7 @@ def run
     send_to_slack("I'm successfuly clocked out for you today :wink:")
     return "Clocked out."
   when "Clock Out"
-    send_to_slack('Already clocked out today for Leo :wink:')
+    send_to_slack('I did clocked out today for you today :wink:')
     return "All good today."
   else
     raise "I don't know what's going on."
