@@ -88,6 +88,7 @@ end
 
 def run
   if current_time.saturday? or current_time.sunday?
+    send_to_slack("Enjoy your weekend, that's an order! :tada:")
     return "Enjoy your weekend, that's an order!"
   end
 
